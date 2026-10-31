@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>小熊猫团队 · 欢迎加入</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-bubbles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- 认证面板 -->
+  <main id="auth-panel" class="panel">
+    <div class="card">
+      <h1 class="brand">小熊猫团队</h1>
+      <p class="subtitle">欢迎来到小熊猫团队</p>
+
+      <div class="tabs">
+        <button id="tab-login" class="tab active" type="button">登录</button>
+        <button id="tab-register" class="tab" type="button">注册</button>
+        <div id="tab-indicator" class="tab-indicator"></div>
+      </div>
+
+      <!-- 登录表单 -->
+      <form id="login-form" class="form" novalidate>
+        <div class="login-mode">
+          <label class="radio">
+            <input type="radio" name="loginMode" value="email" checked />
+            <span>邮箱登录</span>
+          </label>
+          <label class="radio">
+            <input type="radio" name="loginMode" value="username" />
+            <span>用户名登录</span>
+          </label>
+        </div>
+
+        <div class="field">
+          <label for="login-account" id="login-account-label">邮箱</label>
+          <input type="text" id="login-account" autocomplete="username" placeholder="请输入邮箱" />
+          <small class="error" id="login-account-error"></small>
+        </div>
+
+        <div class="field">
+          <label for="login-password">密码</label>
+          <div class="password-wrap">
+            <input type="password" id="login-password" autocomplete="current-password" placeholder="请输入密码" />
+            <button type="button" class="toggle-pw" data-target="login-password">显示</button>
+          </div>
+          <small class="error" id="login-password-error"></small>
+        </div>
+
+        <button type="submit" class="btn-primary">登 录</button>
+        <p class="switch-hint">还没有账号？<a href="#" id="go-register">立即注册</a></p>
+      </form>
+
+      <!-- 注册表单 -->
+      <form id="register-form" class="form hidden" novalidate>
+        <div class="field">
+          <label for="reg-email">邮箱</label>
+          <input type="text" id="reg-email" autocomplete="email" placeholder="例如：name@example.com" />
+          <small class="error" id="reg-email-error"></small>
+        </div>
+
+        <div class="field">
+          <label for="reg-username">用户名</label>
+          <input type="text" id="reg-username" autocomplete="username" placeholder="3-16位，字母/数字/下划线/中文" />
+          <small class="error" id="reg-username-error"></small>
+        </div>
+
+        <div class="field">
+          <label for="reg-password">密码</label>
+          <div class="password-wrap">
+            <input type="password" id="reg-password" autocomplete="new-password" placeholder="至少8位，含字母和数字" />
+            <button type="button" class="toggle-pw" data-target="reg-password">显示</button>
+          </div>
+          <small class="error" id="reg-password-error"></small>
+        </div>
+
+        <div class="field">
+          <label for="reg-confirm">确认密码</label>
+          <input type="password" id="reg-confirm" autocomplete="new-password" placeholder="请再次输入密码" />
+          <small class="error" id="reg-confirm-error"></small>
+        </div>
+
+        <button type="submit" class="btn-primary">注 册</button>
+        <p class="switch-hint">已有账号？<a href="#" id="go-login">返回登录</a></p>
+      </form>
+    </div>
+  </main>
+
+  <!-- 成功页 / 主页：橙色背景 + 顶部菜单栏 + 右下角按钮 -->
+  <section id="success-panel" class="success-panel hidden">
+    <!-- 顶部菜单栏 -->
+    <nav id="top-menu" class="top-menu">
+      <span class="menu-item active" data-target="team">团队文件</span>
+    </nav>
+
+    <!-- 主内容区：团队文件 -->
+    <div id="home-content" class="home-content">
+      <div class="tf-page">
+        <div class="tf-header">
+          <div class="tf-titles">
+            <div class="tf-title-row">
+              <h2 class="tf-title">团队文件</h2>
+              <span id="tf-cap" class="tf-cap">0.00 KB / 1.00 GB</span>
+            </div>
+            <p class="tf-note">注意：此文件库使用 GitHub 仓库系统，上传后若列表未立即显示，请点右侧「刷新」或稍等几秒。</p>
+          </div>
+          <div class="tf-header-actions">
+            <button id="tf-refresh" class="tf-refresh-btn" title="刷新列表">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+            </button>
+            <label class="tf-upload-btn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              上传文件
+              <input id="tf-file-input" type="file" multiple hidden />
+            </label>
+          </div>
+        </div>
+        <div id="tf-list" class="tf-list"></div>
+      </div>
+    </div>
+
+    <!-- 加入成功 打字机覆盖层（仅注册时显示） -->
+    <div id="join-overlay" class="join-overlay hidden">
+      <h2 class="typewriter"><span id="type-text"></span><span class="caret">|</span></h2>
+    </div>
+
+    <!-- 右下角悬浮按钮（非菜单栏按钮） -->
+    <div class="corner-actions">
+      <button id="admin-btn" class="btn-ghost hidden">查看用户信息</button>
+      <button id="logout-btn" class="btn-ghost">退出登录</button>
+    </div>
+  </section>
+
+  <!-- 管理员面板 -->
+  <section id="admin-panel" class="admin-panel hidden">
+    <div class="admin-header">
+      <h2>用户信息管理</h2>
+      <button id="admin-back" class="btn-ghost dark">返回</button>
+    </div>
+    <div id="user-list" class="user-list"></div>
+  </section>
+
+  <!-- 右上角用户图标（默认小熊猫头像） -->
+  <button id="user-avatar" class="user-avatar hidden" title="打开菜单" aria-label="用户菜单">
+    <svg viewBox="0 0 64 64" width="26" height="26" aria-hidden="true">
+      <circle cx="32" cy="35" r="20" fill="#ffffff"/>
+      <circle cx="16" cy="18" r="9" fill="#1f2937"/>
+      <circle cx="48" cy="18" r="9" fill="#1f2937"/>
+      <circle cx="22" cy="31" r="6.5" fill="#1f2937"/>
+      <circle cx="42" cy="31" r="6.5" fill="#1f2937"/>
+      <circle cx="22" cy="31" r="2.6" fill="#ffffff"/>
+      <circle cx="42" cy="31" r="2.6" fill="#ffffff"/>
+      <ellipse cx="32" cy="42" rx="3.6" ry="2.6" fill="#1f2937"/>
+    </svg>
+  </button>
+
+  <!-- 右侧滑出菜单 -->
+  <div id="drawer-overlay" class="drawer-overlay"></div>
+  <aside id="side-drawer" class="side-drawer">
+    <div class="drawer-head">
+      <span>菜单</span>
+      <button id="drawer-close" class="drawer-close" aria-label="关闭">&times;</button>
+    </div>
+    <nav class="drawer-nav">
+      <a id="goto-team-btn" class="drawer-item" href="https://www.luogu.com.cn/team/98149" target="_blank" rel="noopener">去主团队</a>
+    </nav>
+  </aside>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
